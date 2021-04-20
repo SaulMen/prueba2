@@ -6,6 +6,9 @@ from flask import Flask, render_template, request
 
 usuario_obj = usuario(1, "saul","123")
 
+app =  Flask(__name__)
+CORS(app)
+
 @app.route("/")
 def render():
  # Retornamos la plantilla "index.html"
