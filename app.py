@@ -15,7 +15,7 @@ def render():
  return render_template("index.html")
 
 @app.route('/usuario',methods=['GET'])
-def usuario():
+def usuario1():
 	nombreUser = request.args.get('nombreUser')
 	return "<h1>Bienvenido " + nombreUser + "</h1>"
 
