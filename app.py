@@ -2,16 +2,19 @@ from datetime import datetime as dt
 from flask import Flask
 from flask_cors import CORS
 from models.usuario import usuario
+from flask import Flask, render_template, request
 
 usuario_obj = usuario(1, "saul","123")
 
-app =  Flask(__name__)
-CORS(app)
-
-
 @app.route("/")
-def index():
-    return "<h1>Bienvenidos</h1>"
+def render():
+ # Retornamos la plantilla "index.html"
+ return render_template("index.html")
+
+@app.route('/usuario',methods=['GET'])
+def usuario():
+	nombreUser = request.args.get('nombreUser')
+	return "<h1>Bienvenido " + nombreUser + "</h1>"
 
 @app.route("/saludar")
 def saludar():
