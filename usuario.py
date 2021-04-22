@@ -19,8 +19,17 @@ class usuario:
         self.user_pass = user_pass
         self.rol = rol
 
+    def dump(self):
+        return {
+            'id': self.id,
+            'nombre': self.nombre,
+            'user_name': self.user_name,
+            'user_pass': self.user_pass,
+            'rol': self.rol
+        }
+
     def __str__(self):
         return f"usuaio: [ id: {self.id}, nombre: {self.nombre}, user_name: {self.user_name}, user_pass: {self.user_pass}, rol: {self.rol}]"
 
 usuario_prueba = usuario(0,"saul", "saumen", "1234", 0)
-print(usuario_prueba)
+#print(usuario_prueba)
