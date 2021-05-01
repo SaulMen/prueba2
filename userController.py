@@ -8,6 +8,13 @@ class userController:
         self.usuarios = []
         self.contador_id = 0
 
+    #Método para hacer login 
+    def login(self, user_name, user_pass):
+        for usr in self.usuarios:
+            if usr.autenticar(user_name, user_pass):
+                return usr.dump()
+        return None
+    
     #Método para crear usuario
     def crear(self, nombre, user_name, user_pass, rol):
 

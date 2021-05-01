@@ -4,9 +4,9 @@ from usuario import usuario
 from datetime import datetime as dt
 from userController import userController
 
-usuario_obj = usuario(1, "saul","saumen","123",0)
-mis_usuario = userController()
 
+mis_usuario = userController()
+mis_usuario.crear("jafet","saul1","menchu",1)
 
 app =  Flask(__name__)
 CORS(app)
@@ -24,9 +24,29 @@ def datetime():
     now_utc = dt.now()
     return "<h1>"+str(now_utc)+"</h1>"
 
-@app.route("/user")
-def user():
-    return "<h1>"+usuario_obj.user_name+" es el admom</h1>"
+
+@app.route("/inicio-sesion", methods=['POST'])
+def inicio_sesion():
+    if request.method == 'POST':
+        user_name = request.json['user_name'] 
+        user_pass = request.json['user_pass']
+
+    mi_usuario = mis_usuario.login(user_name,user_pass)
+    if mi_usuario != None:
+        return{
+            'status': 100,
+            'info': mi_usuario
+        } 
+    else:
+        return{
+            'status': 300,
+            'info': "Invalid"
+        }
+    return{
+        'status': 700,
+        'info': "Mal request"
+    }
+    
 
 @app.route("/usuario_crear", methods=['GET', 'POST', 'PUT', 'DELETE'])
 def usuario_crear():

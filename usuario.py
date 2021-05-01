@@ -24,7 +24,6 @@ class usuario:
             'id': self.id,
             'nombre': self.nombre,
             'user_name': self.user_name,
-            'user_pass': self.user_pass,
             'rol': self.rol
         }
 
