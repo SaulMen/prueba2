@@ -6,7 +6,8 @@ from userController import userController
 
 
 mis_usuario = userController()
-mis_usuario.crear("jafet","saul1","menchu",1)
+mis_usuario.crear("Ariel","ariel","bautista",1)
+mis_usuario.crear("Cesar","cesar","reyes",1)
 
 app =  Flask(__name__)
 CORS(app)
@@ -54,14 +55,16 @@ def usuario_crear():
     response = {}
 
     if request.method == 'POST':
-        nombre = request.form.get('nombre')
-        user_name = request.form.get('user_name')
-        user_pass = request.form.get('user_pass')
-        rol = request.form.get('rol')
+        nombre = request.json['nombre']
+        user_name = request.json['user_name']
+        user_pass = request.json['user_pass']
+        rol = 2
 
-        if (mis_usuario.crear(nombre, user_name, user_pass, rol)):
+        new_user = mis_usuario.crear(nombre,user_name,user_pass,rol)
+
+        if (new_user != None):
             response['status'] = 100
-            response['info'] = "usuario creado correctamente"
+            response['info'] = "usuario creado correctamente"+str(new_user)
         else:
             response['status'] = 300
             response['info'] = 'No se pudo realizar la acción'
