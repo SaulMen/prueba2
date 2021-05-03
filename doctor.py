@@ -12,7 +12,7 @@ class doctor:
         self.rol = rol
     
     def autenticar(self, user_name, user_pass):
-
+        
         return (self.user_name == user_name and self.user_pass == user_pass)
 
     def actualizar_datos(self, nombre, apellido, fecha, genero, user_name, user_pass, especialidad, tel, rol ):

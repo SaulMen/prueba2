@@ -39,21 +39,31 @@ def inicio_sesion():
         user_pass = request.json['user_pass']
 
     mi_usuario = mis_usuario.login(user_name,user_pass)
+
+    mi_doctor = mis_doctor.login(user_name, user_pass)
+
     if mi_usuario != None:
+        print("entró 1")
         return{
             'status': 100,
             'info': mi_usuario
-        } 
+        }
+    elif mi_doctor != None:
+        print("entró 2")
+        return{
+            'status': 100,
+            'info': mi_doctor
+        }
     else:
+        print("entró 3")
         return{
             'status': 300,
             'info': "Invalid"
         }
-    return{
-        'status': 700,
-        'info': "Mal request"
-    }
-    
+        return{
+            'status': 700,
+            'info': "Mal request"
+        }
 
 @app.route("/usuario_crear", methods=['GET', 'POST', 'PUT', 'DELETE'])
 def usuario_crear():
