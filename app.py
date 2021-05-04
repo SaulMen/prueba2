@@ -355,5 +355,5 @@ def eliminar_medicamento():
         }
 
 if __name__=="__main__":
-    app.run(threaded=True, port=5001, debug=True)    
+    app.run(threaded=True, port=5001, debug=True)  
 
