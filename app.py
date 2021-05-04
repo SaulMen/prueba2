@@ -7,6 +7,7 @@ from doctor import doctor
 from doctorController import doctorController
 from enfermeraController import enfermeraController
 from medicamentoController import medicamentoController
+import json
 
 mis_usuario = userController()
 mis_usuario.crear("Ariel","ariel","bautista",1)
@@ -42,6 +43,8 @@ def inicio_sesion():
 
     mi_doctor = mis_doctor.login(user_name, user_pass)
 
+    mi_enfermera = mis_enfermera.login(user_name, user_pass)
+
     if mi_usuario != None:
         print("entró 1")
         return{
@@ -53,6 +56,12 @@ def inicio_sesion():
         return{
             'status': 100,
             'info': mi_doctor
+        }
+    elif mi_enfermera != None:
+        print("entró 3")
+        return{
+            'status': 100,
+            'info': mi_enfermera
         }
     else:
         print("entró 3")
@@ -222,6 +231,128 @@ def medicamento_crear():
             response['info'] = 'No se pudo realizar la acción'
 
     return response
+
+@app.route("/obtener_usuarios", methods=['GET'])
+def obtener_usuarios():
+    
+    return {
+        'status': 100,
+        'info': mis_usuario.retornar_usuarios()
+    }
+
+@app.route("/obtener_doctores", methods=['GET'])
+def obtener_doctores():
+    
+    return {
+        'status': 100,
+        'info': mis_doctor.retornar_doctores()
+    }
+
+@app.route("/obtener_enfermeras", methods=['GET'])
+def obtener_enfermeras():
+    
+    return {
+        'status': 100,
+        'info': mis_enfermera.retornar_enfermeras()
+    }
+
+@app.route("/obtener_medicamentos", methods=['GET'])
+def obtener_medicamentos():
+    
+    return {
+        'status': 100,
+        'info': mis_medicamento.retornar_medicamentos()
+    }
+
+@app.route("/obtener_un_usuario", methods=['POST'])
+def obtener_un_usuario():
+    if request.method == 'POST':
+        id = request.json['id']
+        
+    mi_usuario2 = mis_usuario.devolver_usuario(id)
+
+    if mi_usuario2 != None:
+        print("entró 1")
+        return{
+            'status': 100,
+            'info': mi_usuario2
+        }
+
+@app.route("/eliminar_usuario", methods=['POST'])
+def eliminar_usuario():
+    if request.method == 'POST':
+        id = request.json['id']
+        
+    mi_usuario3 = mis_usuario.eliminar(id)
+
+    if mi_usuario3 == True:
+        print("entró 2")
+        return{
+            'status': 100,
+            'info': mi_usuario3
+        }
+    else:
+        return{
+            'status': 300,
+            'info': "mi_usuario3"
+        }
+
+@app.route("/eliminar_doctor", methods=['POST'])
+def eliminar_doctor():
+    if request.method == 'POST':
+        id = request.json['id']
+        
+    mi_doctor = mis_doctor.eliminar(id)
+
+    if mi_doctor == True:
+        print("entró 2")
+        return{
+            'status': 100,
+            'info': mi_doctor
+        }
+    else:
+        return{
+            'status': 300,
+            'info': "mi_usuario3"
+        }
+
+@app.route("/eliminar_enfermera", methods=['POST'])
+def eliminar_enfermera():
+    if request.method == 'POST':
+        id = request.json['id']
+        
+    mi_enfermera = mis_enfermera.eliminar(id)
+
+    if mi_enfermera == True:
+        print("entró 2")
+        return{
+            'status': 100,
+            'info': mi_enfermera
+        }
+    else:
+        return{
+            'status': 300,
+            'info': "mi_usuario3"
+        }
+
+@app.route("/eliminar_medicamento", methods=['POST'])
+def eliminar_medicamento():
+    if request.method == 'POST':
+        id = request.json['id']
+        
+    mi_medicamento = mis_medicamento.eliminar(id)
+
+    if mi_medicamento == True:
+        print("entró 2")
+        return{
+            'status': 100,
+            'info': mi_medicamento
+        }
+    else:
+        return{
+            'status': 300,
+            'info': "mi_usuario3"
+        }
 
 if __name__=="__main__":
     app.run(threaded=True, port=5001, debug=True)    

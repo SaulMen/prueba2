@@ -38,15 +38,12 @@ class medicamentoController:
 
     #Método para eliminar un usuario
     def eliminar(self, id):
+        
         for mdct in self.medicamento:
-
             if mdct.id == id:
-                print(f"El medicamento: {mdct.nombre} ha sido eliminado con éxito ")
+                #print(f"El usuario: {usr.user_name} ha sido eliminado con éxito ")
                 self.medicamento.remove(mdct)
-                return True
-
-            print(f"El medicamento con id: {id} no ha encontrado.")
-            return False 
+                return True 
 
 
     #Mostrar todos los usuarios
@@ -55,4 +52,4 @@ class medicamentoController:
             print(mdct)
 
     def retornar_medicamentos(self):
-        return json.dumps([mdct.dump() for mdct in self.medicamento])
+        return ([mdct.dump() for mdct in self.medicamento])#json.dumps([mdct.dump() for mdct in self.medicamento])

@@ -39,15 +39,12 @@ class doctorController:
 
     #Método para eliminar un usuario
     def eliminar(self, id):
+        
         for dtr in self.doctores:
-
             if dtr.id == id:
-                print(f"El usuario: {dtr.user_name} ha sido eliminado con éxito ")
+                #print(f"El usuario: {usr.user_name} ha sido eliminado con éxito ")
                 self.doctores.remove(dtr)
-                return True
-
-            print(f"El usuario con id: {id} no ha encontrado.")
-            return False 
+                return True 
 
 
     #Mostrar todos los usuarios
@@ -56,7 +53,7 @@ class doctorController:
             print(dtr)
 
     def retornar_doctores(self):
-        return json.dumps([dtr.dump() for dtr in self.doctores])
+        return ([dtr.dump() for dtr in self.doctores])#json.dumps([dtr.dump() for dtr in self.doctores])
 
     
     

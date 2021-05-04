@@ -35,19 +35,16 @@ class userController:
         for usr in self.usuarios:
             if usr.id == id:
                 return usr.dump()
-        return {}
+        return None
 
     #Método para eliminar un usuario
     def eliminar(self, id):
+        
         for usr in self.usuarios:
-
             if usr.id == id:
-                print(f"El usuario: {usr.user_name} ha sido eliminado con éxito ")
+                #print(f"El usuario: {usr.user_name} ha sido eliminado con éxito ")
                 self.usuarios.remove(usr)
-                return True
-
-            print(f"El usuario con id: {id} no ha encontrado.")
-            return False 
+                return True        
 
 
     #Mostrar todos los usuarios
@@ -56,4 +53,4 @@ class userController:
             print(usr)
 
     def retornar_usuarios(self):
-        return json.dumps([usr.dump() for usr in self.usuarios])
+        return ([usr.dump() for usr in self.usuarios])#json.dumps([usr.dump() for usr in self.usuarios])

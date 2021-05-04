@@ -38,15 +38,12 @@ class enfermeraController:
 
     #Método para eliminar un usuario
     def eliminar(self, id):
+        
         for enfr in self.enfermera:
-
             if enfr.id == id:
-                print(f"El usuario: {enfr.user_name} ha sido eliminado con éxito ")
+                #print(f"El usuario: {usr.user_name} ha sido eliminado con éxito ")
                 self.enfermera.remove(enfr)
-                return True
-
-            print(f"El usuario con id: {id} no ha encontrado.")
-            return False 
+                return True 
 
 
     #Mostrar todos los usuarios
@@ -55,4 +52,4 @@ class enfermeraController:
             print(enfr)
 
     def retornar_enfermeras(self):
-        return json.dumps([enfr.dump() for enfr in self.enfermera])
+        return ([enfr.dump() for enfr in self.enfermera])#json.dumps([enfr.dump() for enfr in self.enfermera])
